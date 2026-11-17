@@ -1,5 +1,5 @@
 ---
-title: Web知识总结
+title: Web 知识总结
 date: 2026-11-17
 category: CTF
 tags: [CTF, Web]
