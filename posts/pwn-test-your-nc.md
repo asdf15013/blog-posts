@@ -3,7 +3,9 @@ title: PWN入门 Test_your_nc
 date: 2026-11-18
 category: CTF
 tags: [CTF, CTFSHOW, PWN]
+series: PWN
 ---
+
 
 # PWN0
 
