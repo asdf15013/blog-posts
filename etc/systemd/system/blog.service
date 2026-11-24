@@ -1,0 +1,20 @@
+[Unit]
+Description=Yanqi blog (node server + static dist)
+After=network.target blog-resources.service
+
+[Service]
+Type=simple
+WorkingDirectory=/root/blog
+Environment=PORT=3000
+Environment=GH_OWNER=asdf15013
+Environment=GH_REPO=blog-posts
+Environment=GH_BRANCH=main
+Environment=RES_ORIGIN=http://127.0.0.1:3001
+Environment=SITE_URL=https://yanqi-blog.vip
+ExecStart=/usr/bin/node server/server.mjs dist
+Restart=always
+RestartSec=5
+User=root
+
+[Install]
+WantedBy=multi-user.target

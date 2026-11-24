@@ -1,0 +1,14 @@
+[Unit]
+Description=Blog resources file service (port 3001)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/node /root/blog-resources/service.mjs
+Restart=always
+RestartSec=5
+User=root
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

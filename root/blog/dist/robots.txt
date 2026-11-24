@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yanqi-blog-me2z.zai.site/sitemap.xml

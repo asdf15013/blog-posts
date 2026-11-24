@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>16 风格画廊 · 岩栖_shard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font:inherit}
+
+/* ===== 切换器（4×4） ===== */
+.sw{position:fixed;top:0;left:0;right:0;z-index:99;background:#111;display:grid;grid-template-columns:repeat(8,1fr);gap:1px;padding:1px}
+.sw button{border:0;background:#1a1a1a;color:#999;padding:10px 4px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sw button.on{background:#fff;color:#000;font-weight:700}
+.layout{display:none;padding-top:78px;min-height:100vh}
+body[data-t="01"] #t01,body[data-t="02"] #t02,body[data-t="03"] #t03,body[data-t="04"] #t04,
+body[data-t="05"] #t05,body[data-t="06"] #t06,body[data-t="07"] #t07,body[data-t="08"] #t08,
+body[data-t="09"] #t09,body[data-t="10"] #t10,body[data-t="11"] #t11,body[data-t="12"] #t12,
+body[data-t="13"] #t13,body[data-t="14"] #t14,body[data-t="15"] #t15,body[data-t="16"] #t16{display:block}
+.note{position:fixed;bottom:0;left:0;right:0;z-index:99;background:#111;color:#888;font-size:12px;text-align:center;padding:8px}
+.note b{color:#fff}
+.layouts{display:none}
+body[data-show] .layouts{display:block}
+body[data-show="1"] .layouts{display:block}
+
+/* ===== 共享骨架语义：.hd 头 .brand .nav .li 文章条 .no 序号 .t 标题 .sum 摘要 .meta 元信息 .side 侧栏 ===== */
+#t01{background:#f7f3ea;color:#1c1a17;font-family:'Songti SC','Noto Serif SC','SimSun',serif}
+#t01 .hd{max-width:900px;margin:0 auto;padding:40px 24px 16px;display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px double #1c1a17}
+#t01 .seal{width:64px;height:64px;border:3px solid #b3352c;color:#b3352c;display:grid;place-items:center;font-size:22px;font-weight:900;letter-spacing:3px;writing-mode:vertical-rl;padding:5px}
+#t01 .mid{text-align:center;flex:1}
+#t01 .mid small{font-size:12px;letter-spacing:.35em;color:#8a8073}
+#t01 .mid h1{font-size:38px;font-weight:900;letter-spacing:.18em;margin:8px 0}
+#t01 .mid p{font-size:13px;color:#6f675c;letter-spacing:.5em}
+#t01 .vr{writing-mode:vertical-rl;font-size:12px;color:#8a8073;letter-spacing:.3em}
+#t01 .nav{max-width:900px;margin:0 auto;padding:10px 24px;border-bottom:1px solid #d8d0bf;display:flex;gap:24px;font-size:13.5px}
+#t01 .nav a{color:#6f675c}.nav a.on{color:#b3352c;font-weight:700}
+#t01 .main{max-width:900px;margin:0 auto;padding:26px 24px 70px;display:grid;grid-template-columns:1fr 210px;gap:44px}
+#t01 .li{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:24px 0;border-bottom:1px solid #e4dcc9}
+#t01 .no{font-size:24px;color:#c9bfa8;font-weight:900;font-style:italic}
+#t01 .t{font-size:20px;font-weight:900;margin-bottom:8px}
+#t01 .li:hover .t{color:#b3352c}
+#t01 .sum{font-size:14px;line-height:2;color:#4a443a;text-align:justify}
+#t01 .meta{font-size:12px;color:#8a8073;letter-spacing:.1em;margin-bottom:8px}
+#t01 .sidebox{border-top:3px solid #1c1a17;padding:12px 0 22px}
+#t01 .sidebox h4{font-size:13px;letter-spacing:.3em;margin-bottom:10px}
+#t01 .sidebox div{font-size:13.5px;padding:6px 0;border-bottom:1px dotted #c9bfa8;display:flex;justify-content:space-between}
+#t01 .sidebox i{font-style:normal;color:#8a8073;font-size:12px}
+
+#t02{background:#fff;color:#1f2328;font-family:-apple-system,'PingFang SC',sans-serif}
+#t02 .hd{max-width:680px;margin:0 auto;padding:52px 22px 6px;display:flex;justify-content:space-between;align-items:baseline}
+#t02 .brand{font-weight:800;font-size:17px}
+#t02 .brand span{color:#6a6f78;font-weight:400;font-size:13px;margin-left:10px}
+#t02 .nav{font-size:13.5px;color:#58a6ff}
+#t02 .nav a{margin-left:14px}
+#t02 .nav a.on{text-decoration:underline}
+#t02 .hd{border-bottom:1px solid #e4e7ec;padding-bottom:12px;margin-bottom:26px}
+#t02 .main{max-width:680px;margin:0 auto;padding:0 22px 90px}
+#t02 h2.y{font-size:15px;color:#6a6f78;margin:30px 0 4px}
+#t02 .li{display:flex;align-items:baseline;gap:14px;padding:10px 0;border-bottom:1px solid #f0f2f5}
+#t02 .li:hover{background:#fafbfc}
+#t02 .meta{font-family:ui-monospace,monospace;font-size:12.5px;color:#6a6f78;width:70px;flex-shrink:0}
+#t02 .t{font-size:15px;font-weight:600}
+#t02 .t:hover{color:#58a6ff;text-decoration:underline}
+#t02 .li i{font-style:normal;font-size:12px;color:#6a6f78;margin-left:auto}
+#t02 .intro{font-size:14.5px;color:#4b525c;line-height:1.9;margin-bottom:36px}
+#t02 .intro b{font-weight:700}
+
+#t03{background:#f2efe9;color:#141414;font-family:'Helvetica Neue','PingFang SC',sans-serif}
+#t03 .hd{border-bottom:2px solid #141414;background:inherit;position:sticky;top:0;z-index:5}
+#t03 .hd-in{max-width:1040px;margin:0 auto;display:flex;align-items:stretch}
+#t03 .brand{font-size:19px;font-weight:900;padding:15px 22px;border-right:2px solid #141414}
+#t03 .brand em{font-style:normal;color:#e8590c}
+#t03 .nav{display:flex;flex:1}
+#t03 .nav a{display:flex;align-items:center;padding:0 18px;font-size:13.5px;font-weight:600;border-right:1px solid #d8d3c8}
+#t03 .nav a.on{background:#141414;color:#f2efe9}
+#t03 .main{max-width:1040px;margin:0 auto;padding:38px 22px 80px}
+#t03 h1{font-size:44px;font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-bottom:34px}
+#t03 h1 span{color:#e8590c}
+#t03 .li{display:grid;grid-template-columns:64px 1fr auto auto;gap:18px;align-items:center;padding:18px 10px;border-top:1px solid #d8d3c8;cursor:pointer}
+#t03 .li:first-of-type{border-top:2px solid #141414}
+#t03 .li:hover{background:#e9e4d8}
+#t03 .no{font-size:26px;font-weight:900;color:#c9c2b2;font-style:italic}
+#t03 .li:hover .no{color:#e8590c}
+#t03 .t{font-size:19px;font-weight:800}
+#t03 .sum{font-size:13px;color:#6f6a5e;margin-top:4px}
+#t03 .meta{font-size:11.5px;font-weight:800;letter-spacing:.1em;color:#e8590c}
+#t03 .li i{font-style:normal;font-family:ui-monospace,monospace;font-size:12.5px;color:#6f6a5e}
+
+#t04{background:#0b0f0d;color:#b8c4bb;font-family:ui-monospace,'SF Mono',Consolas,monospace;font-size:13.5px;padding:20px}
+#t04 .term{max-width:940px;margin:0 auto;border:1px solid #233828;background:#0e1310}
+#t04 .tbar{display:flex;justify-content:space-between;background:#16241a;padding:6px 12px;font-size:12px;color:#6e8f75;border-bottom:1px solid #233828}
+#t04 .tbar b{color:#7ee787;font-weight:400}
+#t04 .body{padding:16px 18px 18px;min-height:420px}
+#t04 .prompt{color:#7ee787}
+#t04 .prompt i{font-style:normal;color:#79c0ff}
+#t04 .out{margin:12px 0;color:#6e8f75}
+#t04 .li{display:flex;gap:14px;padding:4px 0}
+#t04 .li i{font-style:normal;color:#6e8f75;width:70px;flex-shrink:0}
+#t04 .li:hover{background:#122019}
+#t04 .t{color:#e6edf3;font-weight:700}
+#t04 .li:hover .t{color:#7ee787}
+#t04 .sum{color:#8b949e}
+#t04 .statbar{display:flex;gap:18px;background:#16241a;padding:8px 12px;color:#6e8f75;font-size:12px;border-top:1px solid #233828}
+#t04 .statbar b{color:#7ee787;font-weight:400}
+
+#t05{background:#07070d;color:#dfe3ee;font-family:'PingFang SC',sans-serif}
+#t05 .hd{max-width:1020px;margin:0 auto;padding:34px 24px 18px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(0,229,255,.25)}
+#t05 .brand{font-size:20px;font-weight:800;letter-spacing:.06em;color:#00e5ff;text-shadow:0 0 18px rgba(0,229,255,.5)}
+#t05 .brand i{font-style:normal;color:#ff2ea6;text-shadow:0 0 18px rgba(255,46,166,.5)}
+#t05 .nav{display:flex;gap:20px;font-size:13px}
+#t05 .nav a{color:#6d7690}
+#t05 .nav a.on{color:#00e5ff;text-shadow:0 0 12px rgba(0,229,255,.6)}
+#t05 .main{max-width:1020px;margin:0 auto;padding:30px 24px 80px;display:grid;grid-template-columns:1fr 250px;gap:30px}
+#t05 .li{padding:16px 18px;margin-bottom:14px;background:rgba(0,229,255,.03);border:1px solid rgba(0,229,255,.22);border-left:3px solid #ff2ea6}
+#t05 .li:hover{border-color:#00e5ff;box-shadow:0 0 24px rgba(0,229,255,.12)}
+#t05 .t{font-size:17px;font-weight:700;color:#eef2ff}
+#t05 .li:hover .t{color:#00e5ff}
+#t05 .sum{font-size:13px;color:#8a93ad;margin-top:6px}
+#t05 .meta{font-size:11.5px;color:#ff2ea6;margin-bottom:6px;letter-spacing:.08em}
+#t05 .panel{border:1px solid rgba(0,229,255,.22);padding:16px 18px;margin-bottom:16px}
+#t05 .panel h4{color:#00e5ff;font-size:13px;letter-spacing:.15em;margin-bottom:10px}
+#t05 .panel div{font-size:13px;color:#8a93ad;padding:4px 0;display:flex;justify-content:space-between}
+#t05 .panel i{font-style:normal;color:#dfe3ee}
+
+#t06{background:#f5f1e6;color:#3a352d;font-family:'Songti SC','Noto Serif SC',serif}
+#t06 .hd{max-width:820px;margin:0 auto;padding:44px 22px 24px;text-align:center}
+#t06 .kiku{color:#b3352c;font-size:13px;letter-spacing:.6em;margin-bottom:12px}
+#t06 h1{font-size:34px;font-weight:900;letter-spacing:.3em;text-indent:.3em}
+#t06 .hd p{margin-top:12px;font-size:13px;color:#8a8272;letter-spacing:.2em}
+#t06 .vline{width:1px;height:34px;background:#c9c2ae;margin:18px auto}
+#t06 .main{max-width:820px;margin:0 auto;padding:0 22px 80px}
+#t06 .li{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:22px 6px;border-top:1px solid #d9d2bd}
+#t06 .vtag{writing-mode:vertical-rl;font-size:12px;letter-spacing:.3em;color:#fff;background:#3a352d;padding:10px 5px;height:86px;text-align:center}
+#t06 .t{font-size:19px;font-weight:900;letter-spacing:.06em;margin-bottom:8px}
+#t06 .sum{font-size:14px;line-height:1.95;color:#6f6858;text-align:justify}
+#t06 .meta{margin-top:10px;font-size:12px;color:#8a8272;letter-spacing:.15em}
+#t06 .li:hover .t{color:#b3352c}
+
+#t07{background:#123a6b;color:#dbe9ff;font-family:'PingFang SC',sans-serif;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:28px 28px}
+#t07 .hd{max-width:1000px;margin:0 auto;padding:36px 24px 20px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid rgba(255,255,255,.7)}
+#t07 .brand{font-size:19px;font-weight:800;letter-spacing:.1em;color:#fff}
+#t07 .brand i{font-style:normal;color:#9cc4ff}
+#t07 .nav{display:flex;gap:16px;font-size:13px}
+#t07 .nav a{color:#9cc4ff;border:1px solid rgba(255,255,255,.4);padding:3px 12px}
+#t07 .nav a.on{background:#dbe9ff;color:#123a6b;font-weight:700}
+#t07 .main{max-width:1000px;margin:0 auto;padding:28px 24px 80px}
+#t07 .li{border:1.5px solid rgba(255,255,255,.55);padding:16px 20px;margin-bottom:14px;position:relative}
+#t07 .li::before{content:'REV · A';position:absolute;top:-9px;right:14px;background:#123a6b;padding:0 8px;font-size:10.5px;letter-spacing:.2em;color:#9cc4ff}
+#t07 .li:hover{background:rgba(255,255,255,.06)}
+#t07 .t{font-size:17px;font-weight:800;color:#fff;letter-spacing:.04em}
+#t07 .sum{font-size:13px;color:#b9d2f5;margin-top:6px}
+#t07 .meta{margin-top:8px;font-family:ui-monospace,monospace;font-size:11.5px;color:#9cc4ff;letter-spacing:.1em}
+
+#t08{background:#fbf8ef;color:#333;font-family:'PingFang SC',sans-serif;background-image:linear-gradient(#e5e9f0 1px,transparent 1px),linear-gradient(90deg,#e5e9f0 1px,transparent 1px);background-size:24px 24px}
+#t08 .hd{max-width:760px;margin:0 auto;padding:40px 22px 20px}
+#t08 .tape{display:inline-block;background:rgba(255,217,61,.75);padding:6px 18px;font-size:17px;font-weight:900;transform:rotate(-1.5deg);box-shadow:1px 2px 4px rgba(0,0,0,.08)}
+#t08 .hd p{margin-top:14px;font-size:13.5px;color:#666;background:rgba(173,255,47,.3);display:inline;padding:2px 6px}
+#t08 .main{max-width:760px;margin:0 auto;padding:0 22px 80px}
+#t08 .card2{background:#fffdf7;border:1px solid #e0dccb;box-shadow:2px 3px 0 rgba(0,0,0,.06);padding:20px 24px;margin-bottom:18px;position:relative}
+#t08 .card2::before{content:'';position:absolute;top:-10px;left:24px;width:88px;height:20px;background:rgba(120,180,255,.4);transform:rotate(-2deg)}
+#t08 .card2::after{content:'📌';position:absolute;top:-9px;right:20px;font-size:15px}
+#t08 .t{font-size:17px;font-weight:800;color:#d6336c}
+#t08 .t::before{content:'★ '}
+#t08 .sum{font-size:13.5px;color:#555;margin-top:6px;line-height:1.8}
+#t08 .meta{margin-top:10px;font-size:12px;color:#999}
+#t08 .card2:hover{transform:rotate(-.6deg)}
+
+#t09{background:#fff;color:#000;font-family:'Helvetica Neue','PingFang SC',sans-serif}
+#t09 .hd{max-width:1120px;margin:0 auto;padding:30px 24px 22px;border-bottom:4px solid #000;display:flex;justify-content:space-between;align-items:flex-end}
+#t09 h1{font-size:58px;font-weight:900;letter-spacing:-.04em;line-height:.95}
+#t09 h1 i{font-style:normal;color:#e63329}
+#t09 .nav{display:flex;gap:2px;flex-direction:column}
+#t09 .nav a{font-size:12px;font-weight:800;letter-spacing:.2em;padding:3px 0;color:#888}
+#t09 .nav a.on{color:#e63329}
+#t09 .main{max-width:1120px;margin:0 auto;padding:30px 24px 80px;display:grid;grid-template-columns:1fr 1fr;gap:0 44px}
+#t09 .li{padding:16px 0 18px;border-top:2px solid #000;break-inside:avoid}
+#t09 .li .cat{font-size:10.5px;font-weight:900;letter-spacing:.25em;color:#e63329}
+#t09 .t{font-size:21px;font-weight:900;letter-spacing:-.015em;margin:6px 0 8px;line-height:1.2}
+#t09 .t:hover{background:#e63329;color:#fff}
+#t09 .sum{font-size:13px;color:#444;line-height:1.7}
+#t09 .meta{margin-top:8px;font-size:11px;color:#888;letter-spacing:.05em}
+
+#t10{background:#fef5e7;color:#1a1a1a;font-family:'PingFang SC',sans-serif}
+#t10 .hd{max-width:960px;margin:0 auto;padding:34px 24px 20px;display:flex;align-items:center;gap:18px}
+#t10 .badge{background:#ff6b6b;color:#fff;font-weight:900;font-size:19px;padding:12px 20px;transform:rotate(-3deg);box-shadow:4px 4px 0 #1a1a1a;border:3px solid #1a1a1a}
+#t10 .tag{background:#4ecdc4;border:3px solid #1a1a1a;padding:5px 14px;font-weight:900;font-size:13px;box-shadow:3px 3px 0 #1a1a1a;transform:rotate(2deg)}
+#t10 .tag.y{background:#ffd93d;transform:rotate(-1deg)}
+#t10 .main{max-width:960px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+#t10 .card3{background:#fff;border:3px solid #1a1a1a;border-radius:14px;padding:20px 22px;box-shadow:6px 6px 0 #1a1a1a;position:relative}
+#t10 .card3:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #1a1a1a}
+#t10 .card3::after{content:'●';position:absolute;top:14px;right:16px;color:#4ecdc4}
+#t10 .t{font-size:17px;font-weight:900;padding-right:22px}
+#t10 .t:hover{color:#ff6b6b}
+#t10 .sum{font-size:13px;color:#555;margin:8px 0 10px;line-height:1.7}
+#t10 .meta{font-size:12px;color:#888;font-weight:700}
+#t10 .dotrow{display:flex;gap:8px;margin-top:10px}
+#t10 .dotrow i{width:14px;height:14px;border-radius:50%;border:2px solid #1a1a1a}
+#t10 .dotrow i:nth-child(1){background:#ff6b6b}
+#t10 .dotrow i:nth-child(2){background:#ffd93d}
+#t10 .dotrow i:nth-child(3){background:#4ecdc4}
+
+#t11{background:#141311;color:#d8cfbf;font-family:'Songti SC','Noto Serif SC',serif}
+#t11 .hd{max-width:880px;margin:0 auto;padding:50px 24px 24px;text-align:center;border-bottom:1px solid rgba(200,169,106,.35)}
+#t11 .brand{font-size:15px;letter-spacing:.7em;color:#c8a96a;text-indent:.7em}
+#t11 h1{font-size:36px;font-weight:900;letter-spacing:.15em;margin:16px 0 10px;color:#efe7d5}
+#t11 .hd p{font-size:13px;color:#8d8471;letter-spacing:.3em}
+#t11 .main{max-width:880px;margin:0 auto;padding:14px 24px 80px}
+#t11 .li{padding:26px 8px;border-bottom:1px solid rgba(200,169,106,.18);display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:baseline}
+#t11 .no{font-size:13px;color:#c8a96a;font-family:ui-monospace,monospace;letter-spacing:.2em}
+#t11 .t{font-size:20px;font-weight:900;letter-spacing:.08em;color:#efe7d5}
+#t11 .li:hover .t{color:#ffd76e}
+#t11 .sum{font-size:13px;color:#8d8471;margin-top:8px;line-height:1.9}
+#t11 .meta{font-size:12px;color:#8d8471;letter-spacing:.15em;writing-mode:vertical-rl;text-orientation:upright}
+#t11 .foot{max-width:880px;margin:20px auto 0;text-align:center;color:#8d8471;font-size:12.5px;letter-spacing:.4em}
+
+#t12{background:#ececec;color:#111;font-family:'Songti SC','SimSun',serif}
+#t12 .hd{border-bottom:1px solid #111;padding:14px 18px;display:flex;justify-content:space-between;font-size:12px;color:#444}
+#t12 .hd b{font-size:15px}
+#t12 .mast{border-bottom:4px double #111;padding:26px 18px;text-align:center}
+#t12 .mast h1{font-size:44px;font-weight:900;letter-spacing:.1em}
+#t12 .mast p{font-size:12px;color:#555;margin-top:8px;letter-spacing:.2em}
+#t12 .cols{max-width:1080px;margin:0 auto;padding:26px 18px 80px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 30px}
+#t12 .colh{border-top:3px solid #111;padding-bottom:8px;margin-bottom:14px;font-size:13px;font-weight:900;letter-spacing:.2em}
+#t12 .li{padding:12px 0;border-bottom:1px solid #c9c9c9}
+#t12 .t{font-size:16px;font-weight:900;line-height:1.5}
+#t12 .t:hover{text-decoration:underline}
+#t12 .sum{font-size:12.5px;color:#444;margin-top:6px;line-height:1.75}
+#t12 .meta{margin-top:6px;font-size:11px;color:#777}
+
+#t13{background:#1e332e;color:#e8e0c8;font-family:'Songti SC',serif}
+#t13 .hd{max-width:860px;margin:0 auto;padding:38px 24px 18px;display:flex;justify-content:space-between;align-items:baseline}
+#t13 .brand{font-size:20px;font-weight:900;letter-spacing:.15em;color:#f4d35e}
+#t13 .hd p{font-size:12.5px;color:#9db5a5;letter-spacing:.2em}
+#t13 .rule{max-width:860px;margin:0 auto;border-top:1px solid rgba(244,211,94,.4);position:relative}
+#t13 .rule::after{content:'卡片目录 · 第三屉';position:absolute;right:0;top:-26px;font-size:12px;color:#9db5a5;letter-spacing:.25em}
+#t13 .main{max-width:860px;margin:0 auto;padding:30px 24px 80px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+#t13 .lib{background:#f4efdf;color:#2b2620;padding:16px 18px;border-radius:3px;box-shadow:3px 4px 6px rgba(0,0,0,.4);position:relative}
+#t13 .lib::before{content:'';position:absolute;top:12px;bottom:12px;left:34px;width:1px;background:rgba(43,38,32,.25)}
+#t13 .lib:hover{transform:translateY(-3px) rotate(-.5deg)}
+#t13 .t{font-size:16.5px;font-weight:900;padding-left:26px}
+#t13 .sum{font-size:12.5px;color:#5a5347;padding-left:26px;margin-top:6px;line-height:1.7}
+#t13 .meta{padding-left:26px;margin-top:10px;font-size:11px;color:#8a7f68;font-family:ui-monospace,monospace;display:flex;justify-content:space-between}
+
+#t14{background:#d8d8cc;color:#222;font-family:'PingFang SC',sans-serif}
+#t14 .win{max-width:920px;margin:40px auto;background:#c3c3cb;border:3px outset #dfdfdf;box-shadow:8px 8px 0 rgba(0,0,0,.35)}
+#t14 .wtitle{display:flex;justify-content:space-between;background:linear-gradient(90deg,#000080,#1084d0);color:#fff;padding:5px 10px;font-weight:700;font-size:13.5px}
+#t14 .wtitle span:last-child{font-family:monospace}
+#t14 .wmenu{background:#c3c3cb;border-bottom:1px solid #868686;padding:3px 10px;font-size:12.5px;color:#222}
+#t14 .wmenu b{font-weight:400;margin-right:14px;text-decoration:underline}
+#t14 .wbody{background:#fff;margin:8px;border:2px inset #868686;padding:18px 20px;min-height:380px;font-size:13.5px}
+#t14 .wbody h1{font-size:18px;border-bottom:2px groove #999;padding-bottom:8px;margin-bottom:14px;color:#000080}
+#t14 .li{display:flex;gap:12px;padding:8px 6px;border-bottom:1px dotted #bbb;align-items:baseline}
+#t14 .li:hover{background:#e8f0fe}
+#t14 .li i{font-style:normal;font-family:monospace;color:#666;font-size:12px;width:64px;flex-shrink:0}
+#t14 .t{font-weight:700;color:#000080;text-decoration:underline}
+#t14 .sum{color:#444;font-size:12.5px}
+#t14 .wstat{background:#c3c3cb;border-top:1px solid #dfdfdf;padding:4px 10px;font-size:12px;color:#222;display:flex;justify-content:space-between}
+#t14 .note98{margin:26px auto 60px;max-width:920px;text-align:center;font-size:12px;color:#555}
+
+#t15{background:#171226;color:#cfc6e8;font-family:'PingFang SC',sans-serif}
+#t15 .hd{max-width:920px;margin:0 auto;padding:40px 24px 22px;display:flex;justify-content:space-between;align-items:center}
+#t15 .brand{font-size:21px;font-weight:800;letter-spacing:.05em;color:#e8e2f7}
+#t15 .brand i{font-style:normal;color:#f5e663}
+#t15 .nav{display:flex;gap:18px;font-size:13px}
+#t15 .nav a{color:#8a80ad}
+#t15 .nav a.on{color:#f5e663;border-bottom:2px solid #f5e663;padding-bottom:2px}
+#t15 .main{max-width:920px;margin:0 auto;padding:10px 24px 80px}
+#t15 .li{padding:18px 20px;margin-bottom:14px;background:rgba(245,230,99,.04);border:1px solid rgba(245,230,99,.18);border-radius:12px;position:relative;overflow:hidden}
+#t15 .li::before{content:'✦';position:absolute;right:16px;top:12px;color:rgba(245,230,99,.5);animation:gl 2.4s ease-in-out infinite}
+@keyframes gl{50%{opacity:.2;transform:scale(.7)}}
+#t15 .li:hover{border-color:rgba(245,230,99,.55);background:rgba(245,230,99,.07)}
+#t15 .t{font-size:17px;font-weight:700;color:#f2edff}
+#t15 .li:hover .t{color:#f5e663}
+#t15 .sum{font-size:13px;color:#9a91c4;margin-top:6px}
+#t15 .meta{margin-top:10px;font-size:12px;color:#8a80ad}
+#t15 .meta i{font-style:normal;color:#f5e663}
+
+#t16{background:#233a2c;color:#e8e6d8;font-family:'PingFang SC',sans-serif;background-image:radial-gradient(rgba(255,255,255,.045) 1.4px,transparent 1.4px);background-size:5px 5px}
+#t16 .hd{max-width:840px;margin:0 auto;padding:38px 24px 22px;border-bottom:2px dashed rgba(232,230,216,.35)}
+#t16 .chalk{font-family:'Songti SC',serif;font-size:30px;font-weight:900;color:#f6f3e4;text-shadow:1px 1px 0 rgba(255,255,255,.15);letter-spacing:.08em}
+#t16 .chalk i{font-style:normal;color:#ffd76e}
+#t16 .hd p{margin-top:10px;font-size:13px;color:#b8c4b3;letter-spacing:.15em}
+#t16 .main{max-width:840px;margin:0 auto;padding:24px 24px 80px}
+#t16 .li{padding:16px 4px;border-bottom:1px dashed rgba(232,230,216,.28)}
+#t16 .t{font-size:18px;font-weight:800;color:#fff;font-family:'Songti SC',serif}
+#t16 .t::before{content:'✎ ';color:#ffd76e}
+#t16 .li:hover .t{color:#ffd76e;text-decoration:underline}
+#t16 .sum{font-size:13.5px;color:#b8c4b3;margin-top:6px;line-height:1.8}
+#t16 .meta{margin-top:8px;font-size:12px;color:#9db5a5;letter-spacing:.1em}
+</style>
+</head>
+<body data-t="01">
+
+<div class="sw">
+  <button onclick="go('01',this)" class="on">01 文人报刊</button><button onclick="go('02',this)">02 极简文字</button><button onclick="go('03',this)">03 工作室栅格</button><button onclick="go('04',this)">04 真终端</button>
+  <button onclick="go('05',this)">05 赛博霓虹</button><button onclick="go('06',this)">06 和风素笺</button><button onclick="go('07',this)">07 蓝图制图</button><button onclick="go('08',this)">08 手账纸页</button>
+  <button onclick="go('09',this)">09 瑞士国际</button><button onclick="go('10',this)">10 孟菲斯</button><button onclick="go('11',this)">11 墨金夜读</button><button onclick="go('12',this)">12 晚报分栏</button>
+  <button onclick="go('13',this)">13 图书卡片</button><button onclick="go('14',this)">14 蒸汽窗98</button><button onclick="go('15',this)">15 萤火暮色</button><button onclick="go('16',this)">16 粉笔黑板</button>
+</div>
+
+<!-- 01 文人报刊 -->
+<div class="layout" id="t01">
+  <div class="hd">
+    <div class="seal">岩栖</div>
+    <div class="mid"><small>第四十二期 · 二〇二五年冬</small><h1>岩栖散记</h1><p>代码之外，别有洞天</p></div>
+    <div class="vr">岩栖_shard · 个人辑刊</div>
+  </div>
+  <div class="nav"><a class="on">本期文章</a><a>存档</a><a>工具箱</a><a>订阅 ◈</a></div>
+  <div class="main">
+    <div>
+      <div class="li"><div class="no">〇七</div><div><div class="meta">二〇二六年十一月二十日 · CTF · 约一万二千言</div><div class="t">PWN 入门 · Test your nc</div><p class="sum">提示连上便有 flag。从 nc 的基本使用讲起，到手写 payload、稳定获取 shell——第一道 PWN 题，本就该这么打通。</p></div></div>
+      <div class="li"><div class="no">〇六</div><div><div class="meta">二〇二六年十一月十七日 · 基础知识 · 约四万一千言</div><div class="t">零基础 C 语言深度教程</div><p class="sum">自「何谓程序」说起，行至指针、动态内存、文件与编译链接，终以三例实战收束。</p></div></div>
+      <div class="li"><div class="no">〇五</div><div><div class="meta">二〇二六年十一月十七日 · CTF</div><div class="t">密码学知识总结</div><p class="sum">为入坑 Crypto 的新手而写：每个概念配大白话与例题。</p></div></div>
+    </div>
+    <aside>
+      <div class="sidebox"><h4>门 类</h4><div><span>基础知识</span><i>十篇</i></div><div><span>CTF 攻防</span><i>七篇</i></div></div>
+      <div class="sidebox"><h4>丛 刊</h4><div><span>PWN 系列</span><i>二篇</i></div></div>
+    </aside>
+  </div>
+</div>
+
+<!-- 02 极简文字 -->
+<div class="layout" id="t02">
+  <div class="hd">
+    <div class="brand">岩栖_shard <span>CTF · 写代码 · 爬山</span></div>
+    <nav class="nav"><a class="on">文章</a><a>归档</a><a>工具</a><a>关于</a><a>RSS</a></nav>
+  </div>
+  <div class="main">
+    <p class="intro">记录 CTF 学习、开发踩坑与读书随笔。所有文章用 Markdown 写，存 GitHub，发布即上线。<b>不需要登录，没有广告，欢迎 RSS 订阅。</b></p>
+    <h2 class="y">2026 · 11 月</h2>
+    <div class="li"><span class="meta">11-20</span><span class="t">PWN入门 Test_your_nc</span><i>CTF · 1.2万字 · ❤12</i></div>
+    <div class="li"><span class="meta">11-17</span><span class="t">密码学（Crypto）知识总结</span><i>CTF</i></div>
+    <div class="li"><span class="meta">11-17</span><span class="t">HTML/CSS</span><i>基础知识</i></div>
+    <div class="li"><span class="meta">11-17</span><span class="t">零基础 Java 教程</span><i>基础知识</i></div>
+    <div class="li"><span class="meta">11-16</span><span class="t">PWN 知识总结</span><i>CTF</i></div>
+  </div>
+</div>
+
+<!-- 03 工作室栅格 -->
+<div class="layout" id="t03">
+  <div class="hd"><div class="hd-in">
+    <div class="brand">岩栖<em>_</em>shard</div>
+    <nav class="nav"><a class="on">文章</a><a>工具箱</a><a>资料库</a><a>关于</a></nav>
+  </div></div>
+  <div class="main">
+    <h1>写下来的，<br>才算<span>真的会了</span>。</h1>
+    <div class="li"><div class="no">17</div><div><div class="t">PWN入门 Test_your_nc</div><div class="sum">连上就有 flag——从 nc 到第一枚 shell</div></div><div class="meta">CTF</div><i>2026.11.20</i></div>
+    <div class="li"><div class="no">16</div><div><div class="t">密码学知识总结</div><div class="sum">把"看不懂 wp"的门槛知识一次讲明白</div></div><div class="meta">CTF</div><i>2026.11.17</i></div>
+    <div class="li"><div class="no">15</div><div><div class="t">零基础 C 语言深度教程</div><div class="sum">从什么是程序，到指针、内存与编译链接</div></div><div class="meta">基础</div><i>2026.11.17</i></div>
+  </div>
+</div>
+
+<!-- 04 真终端 -->
+<div class="layout" id="t04">
+  <div class="term">
+    <div class="tbar"><b>yanqi@blog: ~/posts</b><span>bash — 80×24</span></div>
+    <div class="body">
+      <div class="prompt">$ <i>cd ~/blog/posts</i> && ls -lat</div>
+      <div class="out">total 17 · 最新在上</div>
+      <div class="li"><i>11-20 22:41</i><span class="t">pwn-test-your-nc.md</span><span class="sum">[CTF] 连上就有 flag，第一枚 shell</span></div>
+      <div class="li"><i>11-17 21:03</i><span class="t">crypto-notes.md</span><span class="sum">[CTF] Crypto 门槛知识一次讲完</span></div>
+      <div class="li"><i>11-17 20:55</i><span class="t">web-summary.md</span><span class="sum">[CTF] Web 方向入门配套</span></div>
+      <div class="li"><i>11-17 20:51</i><span class="t">c-tutorial.md</span><span class="sum">[基础] 零基础 C 语言深度教程</span></div>
+      <div class="statbar"><span>△ 17 posts</span><span>today 33 reads</span><span>utf-8 · zh-CN</span><b>2026-11-21</b></div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 赛博霓虹 -->
+<div class="layout" id="t05">
+  <div class="hd">
+    <div class="brand">岩栖<i>_</i>shard</div>
+    <nav class="nav"><a class="on">POSTS</a><a>TOOLS</a><a>ARCHIVE</a><a>ABOUT</a></nav>
+  </div>
+  <div class="main">
+    <div>
+      <div class="li"><div class="meta">2026-11-20 // CTF // 1.2万字</div><div class="t">PWN入门 Test_your_nc</div><p class="sum">连上就有 flag——从 nc 到第一枚 shell 的完整路径。</p></div>
+      <div class="li"><div class="meta">2026-11-17 // CTF</div><div class="t">密码学知识总结</div><p class="sum">把"看不懂 wp"的门槛知识一次讲明白。</p></div>
+      <div class="li"><div class="meta">2026-11-17 // 基础</div><div class="t">零基础 C 语言深度教程</div><p class="sum">从什么是程序，到指针、内存与编译链接。</p></div>
+    </div>
+    <aside>
+      <div class="panel"><h4>CATEGORIES</h4><div><span>基础知识</span><i>10</i></div><div><span>CTF</span><i>7</i></div></div>
+      <div class="panel"><h4>STATUS</h4><div><span>POSTS</span><i>17</i></div><div><span>TODAY</span><i>33 reads</i></div></div>
+    </aside>
+  </div>
+</div>
+
+<!-- 06 和风素笺 -->
+<div class="layout" id="t06">
+  <div class="hd">
+    <div class="kiku">文 章 逐 时 新</div>
+    <h1>岩栖随笔帖</h1>
+    <p>二〇二五年 冬 · 第一帖</p>
+    <div class="vline"></div>
+  </div>
+  <div class="main">
+    <div class="li"><div class="vtag">CTF 攻防</div><div><div class="t">PWN入门 · 试你之 nc</div><p class="sum">云曰：连上便有 flag。自 nc 之术始，至 payload 手书、shell 安得，一步一步，打通第一题。</p><div class="meta">十一月二十日 · 约一万二千言</div></div></div>
+    <div class="li"><div class="vtag">基 础</div><div><div class="t">C 语言深究帖</div><p class="sum">自「何谓程序」始，历指针、内存、文件、编译，终以三例实战收束。章末附习与答。</p><div class="meta">十一月十七日 · 约四万一千言</div></div></div>
+    <div class="li"><div class="vtag">CTF 攻防</div><div><div class="t">密码学总览</div><p class="sum">为新入门者书：概念皆配白话与例题。</p><div class="meta">十一月十七日</div></div></div>
+  </div>
+</div>
+
+<!-- 07 蓝图制图 -->
+<div class="layout" id="t07">
+  <div class="hd">
+    <div class="brand">PROJECT <i>岩栖_shard</i> · BLOG</div>
+    <nav class="nav"><a class="on">DOCS</a><a>TOOLS</a><a>SPEC</a><a>ABOUT</a></nav>
+  </div>
+  <div class="main">
+    <div class="li"><div class="t">DOC-017 / PWN入门 Test_your_nc</div><p class="sum">连接即得 flag——从 nc 基础到 shell 获取的完整路径图。</p><div class="meta">DATE: 2026-11-20 · CAT: CTF · SIZE: 1.2万字 · SCALE 1:1</div></div>
+    <div class="li"><div class="t">DOC-016 / 密码学知识总结</div><p class="sum">Crypto 方向门槛知识总图，配套例题与白话注释。</p><div class="meta">DATE: 2026-11-17 · CAT: CTF · SCALE 1:1</div></div>
+    <div class="li"><div class="t">DOC-015 / 零基础 C 语言深度教程</div><p class="sum">程序→指针→内存→编译→实战，全链路图纸。</p><div class="meta">DATE: 2026-11-17 · CAT: 基础 · SIZE: 4.1万字</div></div>
+  </div>
+</div>
+
+<!-- 08 手账纸页 -->
+<div class="layout" id="t08">
+  <div class="hd">
+    <div class="tape">岩栖的手账 ✍ 博客版</div>
+    <p>今天也写了一点点 → 17 篇了，继续！</p>
+  </div>
+  <div class="main">
+    <div class="card2"><div class="t">PWN入门 Test_your_nc</div><p class="sum">连上就有 flag！从 nc 到第一枚 shell，新手村毕业战 ✓（写了 1.2 万字，给自己鼓掌）</p><div class="meta">2026-11-20 · CTF · ❤12</div></div>
+    <div class="card2"><div class="t">密码学知识总结</div><p class="sum">Crypto 入门门槛知识，大白话+例题，一篇讲完。</p><div class="meta">2026-11-17 · CTF</div></div>
+    <div class="card2"><div class="t">零基础 C 语言深度教程</div><p class="sum">指针！内存！编译链接！全通了——4.1 万字的长征。</p><div class="meta">2026-11-17 · 基础</div></div>
+  </div>
+</div>
+
+<!-- 09 瑞士国际 -->
+<div class="layout" id="t09">
+  <div class="hd">
+    <h1>岩栖<br><i>_shard</i></h1>
+    <nav class="nav"><a class="on">文章 17</a><a>工具 22</a><a>资料</a><a>关于</a></nav>
+  </div>
+  <div class="main">
+    <div class="li"><div class="cat">CTF / PWN</div><div class="t">PWN入门 Test_your_nc</div><p class="sum">连上就有 flag——从 nc 到第一枚 shell 的完整路径。</p><div class="meta">2026-11-20 · 1.2 万字 · 12 赞</div></div>
+    <div class="li"><div class="cat">CTF / CRYPTO</div><div class="t">密码学知识总结</div><p class="sum">把"看不懂 wp"的门槛知识一次讲明白。</p><div class="meta">2026-11-17 · 2.4 万字</div></div>
+    <div class="li"><div class="cat">基础 / 语言</div><div class="t">零基础 C 语言深度教程</div><p class="sum">从什么是程序，到指针、内存与编译链接。</p><div class="meta">2026-11-17 · 4.1 万字</div></div>
+  </div>
+</div>
+
+<!-- 10 孟菲斯 -->
+<div class="layout" id="t10">
+  <div class="hd">
+    <div class="badge">岩栖_shard</div>
+    <div class="tag">17 篇文章</div>
+    <div class="tag y">持续更新中</div>
+  </div>
+  <div class="main">
+    <div class="card3"><div class="t">PWN入门 Test_your_nc</div><p class="sum">连上就有 flag——从 nc 到第一枚 shell。</p><div class="meta">2026-11-20 · CTF · ❤12</div><div class="dotrow"><i></i><i></i><i></i></div></div>
+    <div class="card3"><div class="t">密码学知识总结</div><p class="sum">把"看不懂 wp"的门槛知识一次讲明白。</p><div class="meta">2026-11-17 · CTF</div><div class="dotrow"><i></i><i></i><i></i></div></div>
+    <div class="card3"><div class="t">零基础 C 语言深度教程</div><p class="sum">指针、内存、编译链接——4.1 万字长征。</p><div class="meta">2026-11-17 · 基础</div><div class="dotrow"><i></i><i></i><i></i></div></div>
+  </div>
+</div>
+
+<!-- 11 墨金夜读 -->
+<div class="layout" id="t11">
+  <div class="hd">
+    <div class="brand">岩 栖 · 夜 读</div>
+    <h1>十七篇文字，待君翻阅</h1>
+    <p>CTF · 开发 · 随笔</p>
+  </div>
+  <div class="main">
+    <div class="li"><span class="no">NO.017</span><div><div class="t">PWN入门 Test_your_nc</div><p class="sum">连上就有 flag——从 nc 到第一枚 shell 的完整路径。</p></div><span class="meta">十一月二十日</span></div>
+    <div class="li"><span class="no">NO.016</span><div><div class="t">密码学知识总结</div><p class="sum">把"看不懂 wp"的门槛知识一次讲明白。</p></div><span class="meta">十一月十七日</span></div>
+    <div class="li"><span class="no">NO.015</span><div><div class="t">零基础 C 语言深度教程</div><p class="sum">从什么是程序，到指针、内存与编译链接。</p></div><span class="meta">十一月十七日</span></div>
+    <div class="foot">—— 记录 · 即存在 ——</div>
+  </div>
+</div>
+
+<!-- 12 晚报分栏 -->
+<div class="layout" id="t12">
+  <div class="hd"><b>岩栖晚报</b><span>第 42 期 · 二〇二五年冬 · 个人刊</span></div>
+  <div class="mast"><h1>岩栖晚报</h1><p>代码之外 · 别有洞天 · 本期共 17 篇</p></div>
+  <div class="cols">
+    <div>
+      <div class="colh">◆ 技术专栏</div>
+      <div class="li"><div class="t">PWN入门 Test_your_nc</div><p class="sum">连上就有 flag——从 nc 到第一枚 shell。</p><div class="meta">11-20 · CTF · 1.2万字</div></div>
+      <div class="li"><div class="t">密码学知识总结</div><p class="sum">把"看不懂 wp"的门槛知识一次讲明白。</p><div class="meta">11-17 · CTF</div></div>
+    </div>
+    <div>
+      <div class="colh">◆ 基础教程</div>
+      <div class="li"><div class="t">零基础 C 语言深度教程</div><p class="sum">从什么是程序，到指针、内存与编译链接。</p><div class="meta">11-17 · 4.1万字</div></div>
+      <div class="li"><div class="t">零基础 Java 教程</div><p class="sum">面向新手的 Java 全流程。</p><div class="meta">11-17</div></div>
+    </div>
+    <div>
+      <div class="colh">◆ 短 讯</div>
+      <div class="li"><div class="t">Web 知识总结上线</div><p class="sum">CTF Web 方向入门配套。</p><div class="meta">11-16</div></div>
+      <div class="li"><div class="t">工具箱扩至 22 件</div><p class="sum">新增古典密码三件套与编码识别。</p><div class="meta">11-19</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 13 图书卡片 -->
+<div class="layout" id="t13">
+  <div class="hd"><div class="brand">岩栖 文库</div><p>馆藏目录 · 随到随借</p></div>
+  <div class="rule"></div>
+  <div class="main">
+    <div class="lib"><div class="t">PWN入门 Test_your_nc</div><p class="sum">连上就有 flag——从 nc 到第一枚 shell 的完整路径。</p><div class="meta"><span>索取号: CTF/PWN/017</span><span>2026-11-20 编目</span></div></div>
+    <div class="lib"><div class="t">密码学知识总结</div><p class="sum">Crypto 方向门槛知识，配白话与例题。</p><div class="meta"><span>索取号: CTF/CRP/016</span><span>2026-11-17 编目</span></div></div>
+    <div class="lib"><div class="t">零基础 C 语言深度教程</div><p class="sum">程序→指针→内存→编译→实战。</p><div class="meta"><span>索取号: 基础/C/015</span><span>2026-11-17 编目</span></div></div>
+  </div>
+</div>
+
+<!-- 14 蒸汽窗98 -->
+<div class="layout" id="t14">
+  <div class="win">
+    <div class="wtitle"><span>岩栖_shard — 博客文章.htm</span><span>[□][X]</span></div>
+    <div class="wmenu"><b>文件(F)</b><b>编辑(E)</b><b>查看(V)</b><b>收藏(A)</b><b>帮助(H)</b></div>
+    <div class="wbody">
+      <h1>📍 文章列表（17 篇）</h1>
+      <div class="li"><i>11-20</i><span class="t">PWN入门 Test_your_nc.htm</span><span class="sum">— CTF · 1.2万字，连上就有 flag</span></div>
+      <div class="li"><i>11-17</i><span class="t">crypto-notes.htm</span><span class="sum">— CTF · 密码学门槛一次讲完</span></div>
+      <div class="li"><i>11-17</i><span class="t">c-lang-tutorial.htm</span><span class="sum">— 基础 · 4.1万字 C 语言长征</span></div>
+      <div class="li"><i>11-16</i><span class="t">pwn-summary.htm</span><span class="sum">— CTF · PWN 门槛知识</span></div>
+    </div>
+    <div class="wstat"><span>17 个对象</span><span>My Computer</span></div>
+  </div>
+  <div class="note98">© 1998 岩栖_shard · 用 Internet Explorer 5.0 浏览本站效果最佳</div>
+</div>
+
+<!-- 15 萤火暮色 -->
+<div class="layout" id="t15">
+  <div class="hd">
+    <div class="brand">岩栖<i>_</i>shard · 暮色集</div>
+    <nav class="nav"><a class="on">文章</a><a>工具</a><a>关于</a></nav>
+  </div>
+  <div class="main">
+    <div class="li"><div class="t">PWN入门 Test_your_nc</div><p class="sum">连上就有 flag——从 nc 到第一枚 shell。</p><div class="meta"><i>✦</i> 2026-11-20 · CTF · ❤12</div></div>
+    <div class="li"><div class="t">密码学知识总结</div><p class="sum">把"看不懂 wp"的门槛知识一次讲明白。</p><div class="meta"><i>✦</i> 2026-11-17 · CTF</div></div>
+    <div class="li"><div class="t">零基础 C 语言深度教程</div><p class="sum">指针、内存、编译链接——4.1 万字。</p><div class="meta"><i>✦</i> 2026-11-17 · 基础</div></div>
+  </div>
+</div>
+
+<!-- 16 粉笔黑板 -->
+<div class="layout" id="t16">
+  <div class="hd">
+    <div class="chalk">今日板书 <i>·</i> 岩栖_shard 的课</div>
+    <p>共 17 课 · 随到随学 · 下课铃不响我们不走</p>
+  </div>
+  <div class="main">
+    <div class="li"><div class="t">第 17 课：PWN入门 Test_your_nc</div><p class="sum">连上就有 flag——从 nc 到第一枚 shell。敲黑板：这是新手村毕业战。</p><div class="meta">2026-11-20 · CTF · 课后作业：自己打一遍</div></div>
+    <div class="li"><div class="t">第 16 课：密码学知识总结</div><p class="sum">把"看不懂 wp"的门槛知识一次讲明白，概念全部配大白话。</p><div class="meta">2026-11-17 · CTF · 2.4万字</div></div>
+    <div class="li"><div class="t">第 15 课：零基础 C 语言深度教程</div><p class="sum">从什么是程序，到指针、内存与编译链接。这节课比较长，4.1 万字。</p><div class="meta">2026-11-17 · 基础</div></div>
+  </div>
+</div>
+
+<div class="note">16 风格画廊 · 每套是独立版式语言而非配色皮 · 选定编号告诉我（可混搭，如「03 骨架 + 01 宋体」），全站按选型重做</div>
+
+<script>
+function go(t, btn) {
+  document.body.dataset.t = t
+  document.querySelectorAll('.sw button').forEach(b => b.classList.toggle('on', b === btn))
+}
+</script>
+</body>
+</html>

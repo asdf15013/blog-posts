@@ -1,0 +1,14 @@
+{
+  "name": "岩栖_shard 的博客",
+  "short_name": "岩栖_shard",
+  "description": "CTF 教程、技术笔记与生活随想",
+  "start_url": "/#/blank",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0d1024",
+  "theme_color": "#6d5ef2",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

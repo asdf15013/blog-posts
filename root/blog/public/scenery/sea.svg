@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="ssky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2540"/><stop offset=".5" stop-color="#8a5a83"/><stop offset=".8" stop-color="#f0996b"/><stop offset="1" stop-color="#ffd9a0"/></linearGradient>
+<linearGradient id="ssea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a97e"/><stop offset=".25" stop-color="#7a5480"/><stop offset="1" stop-color="#33265c"/></linearGradient></defs>
+<rect width="1600" height="900" fill="url(#ssky)"/>
+<circle cx="800" cy="520" r="88" fill="#ffdfae"/>
+<g fill="#5a3f6e" opacity=".85"><path d="M180 300 q10-8 20 0 q10 8 20 0" stroke="#5a3f6e" stroke-width="3" fill="none"/><path d="M1250 240 q12-9 24 0 q12 9 24 0" stroke="#5a3f6e" stroke-width="3" fill="none"/></g>
+<rect y="560" width="1600" height="340" fill="url(#ssea)"/>
+<g stroke="#ffd9a0" stroke-width="3" opacity=".55"><line x1="740" y1="600" x2="860" y2="600"/><line x1="700" y1="640" x2="900" y2="640"/><line x1="660" y1="690" x2="940" y2="690"/><line x1="620" y1="750" x2="980" y2="750"/></g>
+<g><rect x="1120" y="596" width="8" height="46" fill="#1f1633"/><path d="M1128 600 l52 30 -52 8 Z" fill="#f4efdf"/><path d="M1126 600 l-40 34 40 6 Z" fill="#e8c9a0"/></g>
+</svg>
